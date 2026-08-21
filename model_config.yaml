@@ -1,0 +1,72 @@
+# LogisChain AI - Model Configuration
+# Mirrors the architectures specified in PART A, Section A3 of the project brief.
+
+seed: 42
+
+gnn:
+  architecture: heterogeneous_graph_attention_network  # HetGAT, Section A3.1
+  hidden_channels: 64
+  out_channels: 128       # entity embedding dimensionality
+  heads: 4
+  num_layers: 3
+  id_embed_dim: 16        # learnable per-node identity embedding (link-prediction aid)
+  epochs: 180
+  learning_rate: 0.008
+  optimizer: adam
+  weight_decay: 5.0e-4
+
+tcn:
+  architecture: dilated_causal_convolutions  # Section A3.2
+  dilation_factors: [1, 2, 4, 8, 16, 32, 64]  # -> 128-day receptive field, 7 layers
+  kernel_size: 3
+  num_filters: 24
+  dropout: 0.2
+  quantiles: [0.1, 0.5, 0.9]
+  horizons_days: [30, 60, 90]
+  lookback_days: 128
+  epochs: 15
+  learning_rate: 0.005
+
+transformer:
+  architecture: transformer_encoder_shipment_risk  # Section A3.3
+  d_model: 32
+  nhead: 4
+  num_layers: 2
+  dropout: 0.1
+  epochs: 35
+  learning_rate: 0.001
+
+xgboost_supplier_default:
+  max_depth: [2, 6]        # Optuna search range
+  learning_rate: [0.01, 0.2]
+  n_estimators: [100, 500]
+  min_child_weight: [1, 15]
+  subsample: [0.6, 1.0]
+  colsample_bytree: [0.5, 1.0]
+  optuna_trials: 15
+
+survival:
+  cox_ph:
+    penalizer: 0.05
+    covariates: [otif_rate, inventory_turnover, ccc_days, supplier_concentration_hhi,
+                 freight_cost_ratio, betweenness_centrality, debt_to_equity,
+                 current_ratio, ebitda_margin, lead_time_std]
+  deepsurv:
+    hidden: 32
+    epochs: 150
+    learning_rate: 5.0e-3
+    cv_folds: 5   # k-fold CV concordance (small rare-event sample; see README)
+
+stacking_ensemble:
+  meta_learner: lightgbm  # falls back to sklearn HistGradientBoostingClassifier if unavailable
+  n_estimators: 200
+  max_depth: 4
+  learning_rate: 0.05
+  cv_folds: 5
+
+simulation:
+  turn_length: "1 week"
+  turns_per_year: 52
+  scenario_trigger_probability_per_turn: 0.12
+  min_nodes: 100
+  min_transportation_links: 500

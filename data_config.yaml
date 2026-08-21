@@ -1,0 +1,43 @@
+# LogisChain AI - Data Configuration
+# Governs the synthetic data generator (src/data/synthetic_generator.py), which
+# stands in for the brief's real (paid/registered-access) sources: UN Global
+# Platform AIS, MarineTraffic, UN Comtrade, ICC Trade Register, SWIFT, etc.
+# See docs/architecture.md "Data strategy" for the full rationale.
+
+seed: 42
+
+graph:
+  n_suppliers: 90
+  n_manufacturers: 50
+  n_logistics_providers: 20
+  n_ports: 12
+  n_financial_institutions: 5
+  n_customers: 40
+  # -> ~217 nodes, ~1200+ edges (634+ transportation links), meeting the
+  #    200+ node / 1000+ edge target in deliverable D2.2.1
+
+time_series:
+  n_days: 730          # 2 years, daily
+  start_date: "2023-01-01"
+  ports_used: [Shanghai, Singapore, Rotterdam, "Los Angeles", "Mumbai (JNPT)",
+               Manzanillo, Hamburg, Manila, Santos, Busan, Felixstowe, "Jebel Ali"]
+
+shipments:
+  n_shipments: 6000
+  event_sequence: [booking_confirmed, container_loaded, vessel_departed,
+                    transhipment_arrival, transhipment_departure,
+                    destination_port_arrival, customs_cleared, final_delivery]
+
+trade_finance:
+  n_lc_transactions: 9000
+  tenor_days_options: [30, 60, 90, 120, 180]
+  commodity_risk_categories: [Low, Medium, High]
+
+data_quality_dimensions:  # Section A4.3, tracked conceptually (synthetic data
+                            # doesn't exhibit real-world missingness/fraud, but the
+                            # production pipeline in src/data/acquisition would apply these)
+  - completeness
+  - timeliness
+  - accuracy
+  - consistency
+  - manipulation_resistance

@@ -1,0 +1,173 @@
+{
+  "data": {
+    "n_nodes": 217,
+    "n_edges": 1223,
+    "n_transportation_links": 634,
+    "n_shipments": 3000,
+    "n_lc_transactions": 3000,
+    "default_rate_nodes": 0.07373271889400922,
+    "default_rate_lc": 0.06366666666666666
+  },
+  "gnn": {
+    "node_classification_accuracy": 0.7727272727272727,
+    "supplier_risk_tier_accuracy": 0.8333333333333334,
+    "link_prediction_auc": 0.637850667734279
+  },
+  "tcn": {
+    "throughput": {
+      "mape_30d_by_entity": {
+        "Los Angeles": 2.0285702372408685,
+        "Rotterdam": 2.212475932772288,
+        "Shanghai": 12.57685244078654,
+        "Singapore": 22.386844201874435
+      },
+      "mape_30d_mean": 9.801185703168532
+    },
+    "freight_rate": {
+      "mape_30d_by_entity": {
+        "Los Angeles": 12.056915350753759,
+        "Rotterdam": 12.637415440695518,
+        "Shanghai": 19.060333191781634,
+        "Singapore": 21.21927233268806
+      },
+      "mape_30d_mean": 16.243484078979744
+    }
+  },
+  "transformer": {
+    "delay_auc": 0.5966058298319328,
+    "delay_brier": 0.08483230322599411,
+    "damage_auc": 0.46622323841197255,
+    "doc_discrepancy_auc": 0.5629247523131091
+  },
+  "xgboost": {
+    "auc": 0.8617886178861788,
+    "gini": 0.7235772357723576,
+    "brier": 0.08442119508981705,
+    "average_precision": 0.34444444444444444,
+    "top_features": {
+      "inventory_turnover": 0.1071000024676323,
+      "current_ratio": 0.09880000352859497,
+      "working_capital_ratio": 0.09489999711513519,
+      "clustering_coefficient": 0.08290000259876251,
+      "supplier_concentration_hhi": 0.07639999687671661,
+      "interest_coverage": 0.050200000405311584,
+      "ccc_days": 0.046300001442432404,
+      "debt_to_equity": 0.04610000178217888,
+      "natural_disaster_exposure": 0.042899999767541885,
+      "otif_rate": 0.040800001472234726
+    }
+  },
+  "survival": {
+    "cox_ph": {
+      "c_index_train": 0.8960261295590637,
+      "c_index_test_full": 0.8132530120481928,
+      "c_index_test_financial_only": 0.6867469879518072,
+      "c_index_improvement": 0.12650602409638556
+    }
+  },
+  "trade_finance_default": {
+    "oof_auc": 0.7787638419853924,
+    "test_auc": 0.729209589810826,
+    "test_gini": 0.4584191796216519,
+    "test_brier": 0.05928202209859632,
+    "backend": "lightgbm",
+    "ece": 0.03452168266112492,
+    "n_features": 24
+  },
+  "ccc_predictor": {
+    "mape_30d": 37.57269002712934,
+    "mape_all_horizons": 46.570045051077685,
+    "mae_days": 2.8296514257423406,
+    "worked_example_meddevice": {
+      "dio_change": 18.404197692871094,
+      "dso_change": 9.839079856872559,
+      "dpo_change": -0.28614839911460876,
+      "ccc_change": 28.52942594885826,
+      "predicted_ccc_days": 100.5,
+      "covenant_threshold_days": 90,
+      "breach_predicted": true,
+      "margin_days": -10.5
+    }
+  },
+  "credit_risk_scorer": {
+    "auc_financial_only": 0.5447154471544715,
+    "auc_sc_enhanced_xgb": 0.8699186991869918,
+    "auc_improvement": 0.3252032520325203,
+    "auc_sc_pd_formula": 0.5691056910569106,
+    "n_sc_features": 16,
+    "statistically_meaningful_improvement": true
+  },
+  "simulation": {
+    "n_turns": 26,
+    "trade_finance_mode": {
+      "sc_aware": {
+        "realized_yield": 0.007029459341402361,
+        "npl_ratio": 0.003054533764295931,
+        "defaults": 1,
+        "score": {
+          "financial_performance": 183.5,
+          "risk_management_quality": 250.0,
+          "sc_intelligence_use": 200.0,
+          "decision_speed": 11.3,
+          "learning_progression": 44.3,
+          "total": 689.1,
+          "certification_level": "Specialist",
+          "badge": "Gold",
+          "industry_equivalent": "Senior trade finance analyst (18-36 months)"
+        }
+      },
+      "passive": {
+        "realized_yield": 0.005181937841745036,
+        "npl_ratio": 0.003054533764295931,
+        "defaults": 1,
+        "score": {
+          "financial_performance": 158.9,
+          "risk_management_quality": 150.0,
+          "sc_intelligence_use": 0.0,
+          "decision_speed": 3.3,
+          "learning_progression": 36.3,
+          "total": 348.5,
+          "certification_level": "Novice",
+          "badge": "Bronze",
+          "industry_equivalent": "Trade finance trainee (0-6 months)"
+        }
+      },
+      "n_scenarios_triggered": 3
+    },
+    "scf_pricing_mode": {
+      "sc_aware": {
+        "revenue_usd": 256058.21564904155,
+        "default_rate": 0.0,
+        "participation_rate": 0.8782051282051282,
+        "score": {
+          "financial_performance": 125.6,
+          "risk_management_quality": 250.0,
+          "sc_intelligence_use": 200.0,
+          "decision_speed": 25.0,
+          "learning_progression": 100.5,
+          "total": 701.1,
+          "certification_level": "Specialist",
+          "badge": "Gold",
+          "industry_equivalent": "Senior trade finance analyst (18-36 months)"
+        }
+      },
+      "passive": {
+        "revenue_usd": 38461.53846153838,
+        "default_rate": 0.0,
+        "participation_rate": 1.0,
+        "score": {
+          "financial_performance": 103.8,
+          "risk_management_quality": 180.0,
+          "sc_intelligence_use": 0.0,
+          "decision_speed": 3.3,
+          "learning_progression": 100.0,
+          "total": 387.2,
+          "certification_level": "Novice",
+          "badge": "Bronze",
+          "industry_equivalent": "Trade finance trainee (0-6 months)"
+        }
+      }
+    }
+  },
+  "runtime_seconds": 75.9
+}
