@@ -145,10 +145,8 @@ learners who rely on financial data alone."
 | D12 | 2+ game modes | ✅ both mandatory modes, `src/simulation/game_modes.py` |
 | D13 | 5+ scenarios with financial impact modelling | ✅ 10 scenarios, `src/simulation/scenarios.py`, each ≥3 impact categories |
 | D14 | README + technical documentation | ✅ this file + `docs/` |
-| D15 | Demo video | ❌ **Not produced** — this environment can't render video; `demo/run_pipeline.py` is the closest equivalent (a scripted, reproducible walkthrough) |
-| D16 | Patent concept document | ✅ `docs/patent_concept.md` |
-| D17 (bonus) | Stacking ensemble | ✅ `src/models/ensemble.py`, used by D8 |
-| D18 (bonus) | Real-time dashboard | ❌ Not built — out of scope given remaining time; `TradeFinancePortfolioMode.run()` is already structured to be called turn-by-turn from a UI |
+| D15 | Patent concept document | ✅ `docs/patent_concept.md` |
+| D16 (bonus) | Stacking ensemble | ✅ `src/models/ensemble.py`, used by D8 |
 
 ## Honest scope notes
 
